@@ -18,6 +18,7 @@ A [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli) extension th
 - **Expandable raw JSON** — click any row to see the complete event data with syntax highlighting
 - **Pause / Resume** — freeze auto-scroll to inspect events; resume to catch up
 - **Clear** — wipe the feed and start fresh
+- **Zoom** — use `Ctrl`+`scroll` or `Ctrl`+`+`/`-` to zoom the window in or out
 - `assistant.streaming_delta` hidden by default (very noisy) — toggle it back on via its filter pill
 
 ---
@@ -25,6 +26,7 @@ A [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli) extension th
 ## Requirements
 
 - [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli) installed and authenticated
+- **Experimental features enabled** — X-Ray relies on APIs that are currently behind the experimental flag. Run `gh copilot config` and enable experimental features before installing.
 - Windows (uses WebView2 / Edge), macOS (WKWebView), or Linux (webkit2gtk)
 - Node.js 20+
 
@@ -101,13 +103,13 @@ X-Ray is a [Copilot CLI extension](https://githubnext.com/projects/copilot-cli) 
 ```
 Copilot CLI
     │
-    ├─ hooks (onPreToolUse, onPostToolUse, …)   ──┐
-    └─ session.on(ALL events)                    ──┤
-                                                   ▼
+    ├─ hooks (onPreToolUse, onPostToolUse, …)   ───┐
+    └─ session.on(ALL events)                   ───┤
+                                                   ↓
                                            extension process
                                            (buffers + flushes)
                                                    │ WebSocket
-                                                   ▼
+                                                   ↓
                                            X-Ray webview window
                                            (live event feed)
 ```
