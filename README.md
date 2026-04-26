@@ -39,7 +39,7 @@ git clone https://github.com/EngstromJimmy/copilot-xray
 cd copilot-xray && npm install
 ```
 
-Move the cloned folder to `.github/extensions/copilot-xray/` inside any project you want to use X-Ray in (you can add it to `.gitignore` to avoid committing it). Copilot CLI discovers and loads it automatically the next time you open a session in that repo.
+Copy the `copilot-xray` folder into the `.github/extensions/` folder of any project where you want to use X-Ray. Copilot CLI discovers and loads it automatically the next time you open a session in that repo.
 
 ---
 
