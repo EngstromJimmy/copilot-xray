@@ -36,13 +36,14 @@ A GitHub Copilot CLI extension that opens a native desktop window showing **ever
 
 ### Option A — Add to a specific project (recommended)
 
-Download just the extension files (no nested git repo) into your project's `.github/extensions/copilot-xray/` directory:
+Clone the repo into a temporary location, copy just the extension folder into your project, then clean up:
 
 ```bash
 # from your project root (macOS / Linux / Windows Git Bash / WSL)
-mkdir -p .github/extensions/copilot-xray
-curl -L https://github.com/EngstromJimmy/copilot-xray/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=1 -C .github/extensions/copilot-xray
+git clone --depth 1 https://github.com/EngstromJimmy/copilot-xray /tmp/xray
+mkdir -p .github/extensions
+cp -r /tmp/xray/.github/extensions/copilot-xray .github/extensions/
+rm -rf /tmp/xray
 cd .github/extensions/copilot-xray && npm install
 ```
 
