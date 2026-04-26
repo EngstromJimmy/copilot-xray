@@ -34,41 +34,27 @@ A GitHub Copilot CLI extension that opens a native desktop window showing **ever
 
 ## Installation
 
-### Option A — Install as a user plugin (recommended)
+### Option A — Add to a specific project (recommended)
 
-Works in **every repo** you open, no per-project setup needed.
-
-```
-/plugin install EngstromJimmy/copilot-xray
-```
-
-Type this in any Copilot CLI session. The extension installs into your user-scoped extensions directory and loads automatically from that point on.
-
-### Option B — Add to a specific project
-
-Clone or copy the repo contents into your project's `.github/extensions/copilot-xray/` directory:
+Clone the repo contents into your project's `.github/extensions/copilot-xray/` directory:
 
 ```bash
 # from your project root
 mkdir -p .github/extensions/copilot-xray
-cd .github/extensions/copilot-xray
-gh repo clone EngstromJimmy/copilot-xray .
+gh repo clone EngstromJimmy/copilot-xray .github/extensions/copilot-xray
 ```
 
 Copilot CLI discovers and loads it automatically the next time you open a session in that repo.
 
-### Option C — Clone manually
+### Option B — Clone manually
 
 ```bash
 git clone https://github.com/EngstromJimmy/copilot-xray
 ```
 
-Then either:
+Then copy the cloned folder to `.github/extensions/copilot-xray/` inside any project you want to use X-Ray in.
 
-- Place the cloned folder at `.github/extensions/copilot-xray/` inside any project, **or**
-- Copy it to your user-scoped Copilot extensions directory:
-  - **Windows:** `%USERPROFILE%\.copilot\extensions\copilot-xray\`
-  - **macOS/Linux:** `~/.copilot/extensions/copilot-xray/`
+> **Note on `/plugin install`:** The Copilot CLI plugin system does not currently support auto-loading JS extensions from installed plugin directories. Until that bridge exists, placing the extension directly in `.github/extensions/` is the reliable install path.
 
 ---
 
