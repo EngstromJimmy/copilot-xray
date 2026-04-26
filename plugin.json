@@ -1,0 +1,16 @@
+{
+  "name": "copilot-xray",
+  "description": "Live native desktop window that shows every Copilot CLI session event in real time — messages, tool calls, hooks, permissions, errors, and more.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jimmy Engström",
+    "email": "EngstromJimmy@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/EngstromJimmy/copilot-xray",
+  "repository": "https://github.com/EngstromJimmy/copilot-xray",
+  "license": "MIT",
+  "keywords": ["copilot-cli", "extension", "events", "debugging", "webview", "devtools"],
+  "extensions": [
+    ".github/extensions/copilot-xray/"
+  ]
+}
