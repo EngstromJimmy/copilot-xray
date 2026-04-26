@@ -11,6 +11,6 @@
   "license": "MIT",
   "keywords": ["copilot-cli", "extension", "events", "debugging", "webview", "devtools"],
   "extensions": [
-    ".github/extensions/copilot-xray/"
+    "."
   ]
 }
