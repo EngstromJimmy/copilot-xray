@@ -36,12 +36,14 @@ A GitHub Copilot CLI extension that opens a native desktop window showing **ever
 
 ### Option A — Add to a specific project (recommended)
 
-Clone the repo contents into your project's `.github/extensions/copilot-xray/` directory:
+Download just the extension files (no nested git repo) into your project's `.github/extensions/copilot-xray/` directory:
 
 ```bash
-# from your project root
+# from your project root (macOS / Linux / Windows Git Bash / WSL)
 mkdir -p .github/extensions/copilot-xray
-gh repo clone EngstromJimmy/copilot-xray .github/extensions/copilot-xray
+curl -L https://github.com/EngstromJimmy/copilot-xray/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C .github/extensions/copilot-xray
+cd .github/extensions/copilot-xray && npm install
 ```
 
 Copilot CLI discovers and loads it automatically the next time you open a session in that repo.
@@ -50,11 +52,10 @@ Copilot CLI discovers and loads it automatically the next time you open a sessio
 
 ```bash
 git clone https://github.com/EngstromJimmy/copilot-xray
+cd copilot-xray && npm install
 ```
 
-Then copy the cloned folder to `.github/extensions/copilot-xray/` inside any project you want to use X-Ray in.
-
-> **Note on `/plugin install`:** The Copilot CLI plugin system does not currently support auto-loading JS extensions from installed plugin directories. Until that bridge exists, placing the extension directly in `.github/extensions/` is the reliable install path.
+Then move the cloned folder to `.github/extensions/copilot-xray/` inside any project you want to use X-Ray in (you can add it to `.gitignore` to avoid committing it).
 
 ---
 
@@ -66,13 +67,7 @@ Once installed, X-Ray **auto-opens** when a session starts. You can also open it
 /copilot-xray
 ```
 
-The agent can also open, evaluate JS in, or close the window via three registered tools:
-
-| Tool | What it does |
-|---|---|
-| `copilot_xray_show` | Open the window (idempotent; pass `reload: true` to refresh) |
-| `copilot_xray_eval` | Evaluate JavaScript inside the window |
-| `copilot_xray_close` | Close the window |
+The agent can open, interact with, and close the window through built-in tools — no extra configuration needed.
 
 ---
 
