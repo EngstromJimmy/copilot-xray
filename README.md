@@ -61,13 +61,25 @@ Then move the cloned folder to `.github/extensions/copilot-xray/` inside any pro
 
 ## Usage
 
-Once installed, X-Ray **auto-opens** when a session starts. You can also open it manually:
+X-Ray runs quietly in the background from the moment your session starts, buffering up to **1 000 events** in a ring buffer. Open the window whenever you want to inspect traffic:
 
 ```
 /copilot-xray
 ```
 
-The agent can open, interact with, and close the window through built-in tools — no extra configuration needed.
+When you open it you'll see everything that happened since the session started (up to the buffer limit). The agent can also open, interact with, and close the window through built-in tools — no extra configuration needed.
+
+### Configuring the buffer size
+
+Set the `XRAY_MAX_EVENTS` environment variable before starting Copilot CLI:
+
+```bash
+# Keep the last 500 events (default is 1000)
+XRAY_MAX_EVENTS=500 gh copilot ...
+
+# Unlimited buffering (be mindful of memory in long sessions)
+XRAY_MAX_EVENTS=0 gh copilot ...
+```
 
 ---
 
@@ -77,7 +89,7 @@ X-Ray is a Copilot CLI extension built on top of [`copilot-webview`](https://git
 
 1. Hooks into `onSessionStart`, `onUserPromptSubmitted`, `onPreToolUse`, `onPostToolUse`, and `onSessionEnd`
 2. Subscribes to **all** raw session events via `session.on((event) => ...)`
-3. Buffers events until the WebSocket connection to the page is ready, then flushes in batches
+3. Buffers up to `XRAY_MAX_EVENTS` events (default 1 000) in a ring buffer — oldest are dropped when the cap is reached
 4. Pushes batches into the webview page via `webview.eval('window.addEvents(...)')`
 5. The vanilla JS page renders each event as an expandable row with syntax-highlighted JSON
 

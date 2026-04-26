@@ -3,6 +3,12 @@ import { join } from "node:path";
 import { CopilotWebview } from "./lib/copilot-webview.js";
 
 // ── Event queue ──────────────────────────────────────────────────────────────
+// Set XRAY_MAX_EVENTS=0 to disable the cap (unlimited buffering).
+const MAX_EVENTS = (() => {
+    const v = parseInt(process.env.XRAY_MAX_EVENTS ?? "1000", 10);
+    return isNaN(v) || v < 0 ? 1000 : v;
+})();
+
 let eventQueue = [];
 let flushScheduled = false;
 let seqNum = 0;
@@ -21,6 +27,9 @@ function safeData(data) {
 
 function enqueue(type, data) {
     eventQueue.push({ seq: seqNum++, type, data: safeData(data), ts: Date.now() });
+    if (MAX_EVENTS > 0 && eventQueue.length > MAX_EVENTS) {
+        eventQueue.splice(0, eventQueue.length - MAX_EVENTS);
+    }
     scheduleFlush();
 }
 
@@ -70,8 +79,6 @@ const session = await joinSession({
     hooks: {
         onSessionStart: async (input) => {
             enqueue("hook:session_start", input);
-            // Auto-open so the user sees events from the very start
-            webview.show().catch(() => {});
         },
         onUserPromptSubmitted: async (input) => {
             enqueue("hook:user_prompt", { prompt: input.prompt, cwd: input.cwd, timestamp: input.timestamp });
