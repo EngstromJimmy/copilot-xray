@@ -1,6 +1,6 @@
 # Copilot X-Ray 🔬
 
-A [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli) extension that opens a native desktop window showing **every event happening inside your session in real time** — messages, tool calls, MCP calls, skill/plugin loads, hooks, permissions, errors, and more.
+A GitHub Copilot CLI extension that opens a native desktop window showing **every event happening inside your session in real time** — messages, tool calls, MCP calls, skill/plugin loads, hooks, permissions, errors, and more.
 
 ![Copilot X-Ray screenshot showing a live event feed](screenshot.png)
 
@@ -25,7 +25,7 @@ A [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli) extension th
 
 ## Requirements
 
-- [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli) installed and authenticated
+- GitHub Copilot CLI installed and authenticated
 - **Experimental features enabled** — X-Ray relies on APIs that are currently behind the experimental flag. Run `gh copilot config` and enable experimental features before installing.
 - Windows (uses WebView2 / Edge), macOS (WKWebView), or Linux (webkit2gtk)
 - Node.js 20+
@@ -39,7 +39,7 @@ A [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli) extension th
 Works in **every repo** you open, no per-project setup needed.
 
 ```
-/install-plugin EngstromJimmy/copilot-xray
+/plugin install EngstromJimmy/copilot-xray
 ```
 
 Type this in any Copilot CLI session. The extension installs into your user-scoped extensions directory and loads automatically from that point on.
@@ -92,7 +92,7 @@ The agent can also open, evaluate JS in, or close the window via three registere
 
 ## How it works
 
-X-Ray is a [Copilot CLI extension](https://githubnext.com/projects/copilot-cli) built on top of [`copilot-webview`](https://github.com/SteveSandersonMS/copilot-webview-creator). It:
+X-Ray is a Copilot CLI extension built on top of [`copilot-webview`](https://github.com/SteveSandersonMS/copilot-webview-creator). It:
 
 1. Hooks into `onSessionStart`, `onUserPromptSubmitted`, `onPreToolUse`, `onPostToolUse`, and `onSessionEnd`
 2. Subscribes to **all** raw session events via `session.on((event) => ...)`
