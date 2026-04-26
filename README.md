@@ -26,7 +26,7 @@ A GitHub Copilot CLI extension that opens a native desktop window showing **ever
 ## Requirements
 
 - GitHub Copilot CLI installed and authenticated
-- **Experimental features enabled** — X-Ray relies on APIs that are currently behind the experimental flag. Run `gh copilot config` and enable experimental features before installing.
+- **Experimental features enabled** — X-Ray relies on APIs that are currently behind the experimental flag. Run `copilot config` and enable experimental features before installing.
 - Windows (uses WebView2 / Edge), macOS (WKWebView), or Linux (webkit2gtk)
 - Node.js 20+
 
@@ -75,10 +75,10 @@ Set the `XRAY_MAX_EVENTS` environment variable before starting Copilot CLI:
 
 ```bash
 # Keep the last 500 events (default is 1000)
-XRAY_MAX_EVENTS=500 gh copilot ...
+XRAY_MAX_EVENTS=500 copilot
 
 # Unlimited buffering (be mindful of memory in long sessions)
-XRAY_MAX_EVENTS=0 gh copilot ...
+XRAY_MAX_EVENTS=0 copilot
 ```
 
 ---
