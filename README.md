@@ -34,29 +34,12 @@ A GitHub Copilot CLI extension that opens a native desktop window showing **ever
 
 ## Installation
 
-### Option A — Add to a specific project (recommended)
-
-Clone the repo into a temporary location, copy just the extension folder into your project, then clean up:
-
-```bash
-# from your project root (macOS / Linux / Windows Git Bash / WSL)
-git clone --depth 1 https://github.com/EngstromJimmy/copilot-xray /tmp/xray
-mkdir -p .github/extensions
-cp -r /tmp/xray/.github/extensions/copilot-xray .github/extensions/
-rm -rf /tmp/xray
-cd .github/extensions/copilot-xray && npm install
-```
-
-Copilot CLI discovers and loads it automatically the next time you open a session in that repo.
-
-### Option B — Clone manually
-
 ```bash
 git clone https://github.com/EngstromJimmy/copilot-xray
 cd copilot-xray && npm install
 ```
 
-Then move the cloned folder to `.github/extensions/copilot-xray/` inside any project you want to use X-Ray in (you can add it to `.gitignore` to avoid committing it).
+Move the cloned folder to `.github/extensions/copilot-xray/` inside any project you want to use X-Ray in (you can add it to `.gitignore` to avoid committing it). Copilot CLI discovers and loads it automatically the next time you open a session in that repo.
 
 ---
 
