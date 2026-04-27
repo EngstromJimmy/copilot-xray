@@ -77,39 +77,6 @@ X-Ray is a Copilot CLI extension built on top of [`copilot-webview`](https://git
 4. Pushes batches into the webview page via `webview.eval('window.addEvents(...)')`
 5. The vanilla JS page renders each event as an expandable row with syntax-highlighted JSON
 
-```
-Copilot CLI
-    │
-    ├─ hooks (onPreToolUse, onPostToolUse, …)   ───┐
-    └─ session.on(ALL events)                   ───┤
-                                                   ↓
-                                           extension process
-                                           (buffers + flushes)
-                                                   │ WebSocket
-                                                   ↓
-                                           X-Ray webview window
-                                           (live event feed)
-```
-
----
-
-## Development
-
-```bash
-git clone https://github.com/EngstromJimmy/copilot-xray
-cd copilot-xray
-npm install
-```
-
-Drop the folder into `.github/extensions/copilot-xray/` of any git repo, then open Copilot CLI there. Use `/copilot-xray` to open the window.
-
-After editing files, run `/reload-extensions` (or type `extensions_reload` in your agent session) to pick up changes without restarting Copilot CLI.
-
-**Editing the UI** (`content/`): vanilla HTML/JS/CSS — no build step. Just reload the window with `copilot_xray_show` with `reload: true`.
-
-**Editing the extension logic** (`main.mjs`): reload extensions after saving.
-
----
 
 ## License
 
